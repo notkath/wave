@@ -36,6 +36,7 @@
   margin-bottom: 1.5rem; /* Increased margin */
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
   line-height: 1.2; /* Added line height */
+  color: aliceblue;
 }
 
 .hero-content p {
@@ -46,6 +47,7 @@
   margin-top: 2rem; /* Added top margin */
   padding-right: 2rem; /* Added right padding */
   opacity: 0.9; /* Slightly reduced opacity for better contrast */
+  color: aliceblue;
 }
 
 /* Added media query for responsiveness */

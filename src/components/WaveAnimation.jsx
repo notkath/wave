@@ -62,7 +62,7 @@ function Points() {
       </bufferGeometry>
       <pointsMaterial
         map={imgTex}
-        color={0x00000}
+        color={0xfdfdfd}
         size={0.5}
         sizeAttenuation
         transparent
@@ -78,7 +78,7 @@ function AnimationCanvas() {
     // Add a wrapper div around your Canvas
 <div 
   style={{ 
-    background: "linear-gradient(to bottom,rgb(9, 9, 132),rgb(107, 107, 226))",
+    background: "linear-gradient(to bottom,rgb(13, 13, 23),rgb(3, 3, 44))",
     width: "100%", 
     height: "100vh" 
   }}
