@@ -9,6 +9,7 @@ html, body {
   overflow-x: hidden; /* Prevent horizontal scroll */
   overflow-y: auto;   /* Enable vertical scroll */
   height: 100%;
+  scrollbar-width: none;
 }
 .anim {
   position: absolute; /* Keep it contained inside hero */
