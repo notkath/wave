@@ -1,0 +1,91 @@
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  color: rgb(26, 25, 25);
+}
+
+html, body {
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-y: auto;   /* Enable vertical scroll */
+  height: 100%;
+}
+.anim {
+  position: absolute; /* Keep it contained inside hero */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Keep animation behind content */
+}
+
+.app-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.app-container > *:first-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Push background behind content */
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+ /* Optional: Adds a subtle background blur */
+}
+.app-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.anim canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Push animation behind navbar */
+  pointer-events: none; /* Prevents interaction issues */
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.hero {
+  width: 100%;
+  margin-top: 80px; /* Adjust based on Navbar height */
+  padding-bottom: 100px; /* Ensure space below Hero */
+}
+
+.events-container {
+  width: 100%;
+  margin-top: 50px; /* Add space between Hero and Events */
+  position: relative;
+  z-index: 10;
+   /* Ensure Events appear above background layers */
+}
