@@ -1,0 +1,8 @@
+html, body {
+  overflow: hidden;
+  scrollbar-width: none; /* For Firefox */
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
