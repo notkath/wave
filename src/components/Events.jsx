@@ -1,146 +1,185 @@
-import React, { useState } from "react";
-import "./Events.css";
+import { useState } from "react";
+import "./Events.css"
 
-const Events = () => {
+const Organize = () => {
   const [selectedLocation, setSelectedLocation] = useState("");
+  const [eventName, setEventName] = useState("");
   const [upcomingEvents, setUpcomingEvents] = useState([
     "Save our shores",
     "Sandy Hands",
   ]);
-  const [eventName, setEventName] = useState("");
 
   const showLocation = (location) => {
     setSelectedLocation(location);
   };
 
-  const handleSubmit = (e) => {
+  const addUpcomingEvent = (e) => {
     e.preventDefault();
-    if (eventName.trim()) {
+    if (eventName.trim() !== "") {
       setUpcomingEvents([...upcomingEvents, eventName]);
       setEventName("");
     }
   };
 
   return (
-    <div className="container">
-      <div className="left">
-        <div className="header">
+    <div className="mainbody">
+      <div className="nav">
+        <div className="title">
+          <br />
           <h1>Be a Cleanup Leader</h1>
-          <p>Turn the Tide – Host a Beach Cleanup in Your Community!</p>
         </div>
-
-        <img
-          className="banner"
-          src="/api/placeholder/800/400"
-          alt="beaches"
-          useMap="#mymap"
-        />
-
-        <map name="mymap">
-          <area shape="rect" coords="240,55,504,75" onClick={() => showLocation('Tiruvottiyu Beach')} />
-          <area shape="rect" coords="230,114,473,135" onClick={() => showLocation('Kasimedu Beach')} />
-          <area shape="rect" coords="214,153,506,174" onClick={() => showLocation('Marina Beach')} />
-          <area shape="rect" coords="206,190,513,212" onClick={() => showLocation('Broken Beach')} />
-          <area shape="rect" coords="197,213,481,253" onClick={() => showLocation('Elliot Beach')} />
-          <area shape="rect" coords="190,283,513,303" onClick={() => showLocation('Thiruvalluvar Nagar Beach')} />
-          <area shape="rect" coords="182,312,436,345" onClick={() => showLocation('VGP Golden Beach')} />
-          <area shape="rect" coords="187,363,469,386" onClick={() => showLocation('Covelong Beach')} />
-        </map>
-
-        <p className="location-text">
-          Click on the beach to select location: <strong>{selectedLocation}</strong>
+        <br />
+        <p className="des">
+          <i>Turn the Tide – Host a Beach Cleanup in Your Community!</i>
         </p>
-
-        <form onSubmit={handleSubmit} className="form">
-          <h3>Enrollment form</h3>
-
-          <div className="section">
-            <h4>Organizer Contact Information</h4>
-            <label>Organization or Individual:</label>
-            <input type="radio" name="sel" /> Individual
-            <input type="radio" name="sel" /> Organization
-
-            <label>Name:</label>
-            <input type="text" placeholder="Enter name..." />
-
-            <label>Email:</label>
-            <input type="text" placeholder="Enter email..." />
-
-            <label>Phone:</label>
-            <input type="text" placeholder="Enter phone no...." />
-          </div>
-
-          <div className="section">
-            <h4>Other info</h4>
-            <label>Event Name:</label>
+        <br />
+        <img
+          className="beaches"
+          useMap="#mymap"
+          src="./src/assets/beaches.jpg"
+          alt="beaches"
+        />
+        <br />
+        <br />
+        <map name="mymap">
+          {[
+            { name: "Tiruvottiyu Beach", coords: "240,55,504,75" },
+            { name: "Kasimedu Beach", coords: "230,114,473,135" },
+            { name: "Marina Beach", coords: "214,153,506,174" },
+            { name: "Broken Beach", coords: "206,190,513,212" },
+            { name: "Elliot Beach", coords: "197,213,481,253" },
+            { name: "Thiruvalluvar Nagar Beach", coords: "190,283,513,303" },
+            { name: "VGP Golden Beach", coords: "182,312,436,345" },
+            { name: "Covelong Beach", coords: "187,363,469,386" },
+          ].map((beach, index) => (
+            <area
+              key={index}
+              shape="rect"
+              coords={beach.coords}
+              onClick={() => showLocation(beach.name)}
+            />
+          ))}
+        </map>
+        <p className="ooutput">
+          Click on the beach to select location:{" "}
+          <b>
+            <span style={{ color: "rgb(4, 4, 22)" }}>{selectedLocation}</span>
+          </b>
+        </p>
+        <br />
+        <br />
+        <fieldset>
+          <legend>
+            <h3>
+              <i>Enrollment form</i>
+            </h3>
+          </legend>
+          <h4>Organizer Contact Information</h4>
+          <p>
+            Organization or Individual:
+            <input type="radio" name="sel" />
+            Individual
+            <input type="radio" name="sel" />
+            Organization
+          </p>
+          <p>
+            Name: <input type="text" placeholder="Enter name..." />
+          </p>
+          <p>
+            Email: <input type="text" placeholder="Enter email..." />
+          </p>
+          <p>
+            Phone: <input type="text" placeholder="Enter phone no...." />
+          </p>
+          <br />
+          <h4>Other info</h4>
+          <p>
+            Event Name:{" "}
             <input
               type="text"
+              placeholder="Enter name..."
               value={eventName}
               onChange={(e) => setEventName(e.target.value)}
-              placeholder="Enter name..."
             />
-
-            <label>Event Date:</label>
-            <input type="date" />
-
-            <label>Location:</label>
-            <span>{selectedLocation}</span>
-
-            <label>Timing:</label>
-            <input type="text" />
-
-            <label>Cleanup Goals:</label>
-            <input type="checkbox" /> Plastic removal
-            <input type="checkbox" /> Microplastic
-            <input type="checkbox" /> Cans
-
-            <label>Estimated Participants:</label>
-            <input type="text" />
-
-            <label>Supplies required:</label>
-            <input type="checkbox" /> Boots
-            <input type="checkbox" /> Gloves
-            <input type="checkbox" /> Picker
-
-            <label>Payment Method:</label>
-            <input type="radio" name="pay" /> Creditcard
-            <input type="radio" name="pay" /> PayPal
-            <input type="radio" name="pay" /> Bank Transfer
-
-            <button type="submit" className="submit-btn">Submit</button>
-          </div>
-        </form>
+          </p>
+          <p>
+            Event Date: <input type="date" />
+          </p>
+          <p>
+            Location: <span>{selectedLocation}</span>
+          </p>
+          <p>
+            Timing: <input type="text" />
+          </p>
+          <p>
+            Cleanup Goals:
+            <input type="checkbox" name="goal" />
+            Plastic removal
+            <input type="checkbox" name="goal" />
+            Microplastic
+            <input type="checkbox" name="goal" />
+            Cans
+          </p>
+          <p>
+            Estimated Participants: <input type="text" />
+          </p>
+          <p>
+            Supplies required:
+            <input type="checkbox" name="sup" />
+            Boots
+            <input type="checkbox" name="sup" />
+            Gloves
+            <input type="checkbox" name="sup" />
+            Picker
+          </p>
+          <p>
+            Payment Method:
+            <input type="radio" name="pay" />
+            Creditcard
+            <input type="radio" name="pay" />
+            PayPal
+            <input type="radio" name="pay" />
+            Bank Transfer
+          </p>
+          <p>
+            <input type="submit" onClick={addUpcomingEvent} />
+          </p>
+        </fieldset>
+        <br />
+        <br />
       </div>
-
-      <div className="right">
-        <p className="title">Start Your Cleanup Now</p>
-        <div className="image-grid">
-          <div className="grid-item"></div>
-          <div className="grid-item"></div>
-          <div className="grid-item"></div>
+      <div className="aside">
+        <br />
+        <br />
+        <p className="p2">Start Your Cleanup Now</p>
+        <br />
+        <div className="imgs">
+          <div id="i1"></div>
+          <div id="i2"></div>
+          <div id="i3"></div>
         </div>
-
-        <div className="events-section">
-          <p className="title">Successful Events</p>
-          <ul>
-            <li>Wave Warriors</li>
-            <li>Ocean Revival</li>
-            <li>Blue Horizon</li>
-            <li>Sea Guardian</li>
-          </ul>
-        </div>
-
-        <div className="events-section">
-          <p className="title">Upcoming Events</p>
-          <ul>
-            {upcomingEvents.map((event, index) => (
-              <li key={index}>{event}</li>
-            ))}
-          </ul>
-        </div>
+        <br />
+        <br />
+        <p className="p2">Successful Events</p>
+        <br />
+        <ul>
+          <li>Wave Warriors</li>
+          <li>Ocean Revival</li>
+          <li>Blue Horizon</li>
+          <li>Sea Guardian</li>
+        </ul>
+        <br />
+        <p className="p2">Upcoming Events</p>
+        <br />
+        <ul>
+          {upcomingEvents.map((event, index) => (
+            <li key={index}>{event}</li>
+          ))}
+        </ul>
+        <br />
       </div>
     </div>
   );
 };
 
-export default Events;
+export default Organize;
